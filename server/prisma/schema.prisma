@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  login    String @unique
+  password String
+  role     Role   @default(USER)
+
+  campaign       Campaign[]
+  sendersFile    SendersFile[]
+  recipientsFile RecipientsFile[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+// отправители
+model SendersFile {
+  id             Int        @id @default(autoincrement())
+  createdAt      DateTime   @default(now())
+  importName     String
+  mails          String
+  token          String
+  author         User       @relation(fields: [authorId], references: [id])
+  authorId       Int
+  importedNumber Int
+  uniqueNumber   Int
+  campaigns      Campaign[] @relation("SendersFileToCampaign")
+}
+
+// получатели
+model RecipientsFile {
+  id             Int        @id @default(autoincrement())
+  createdAt      DateTime   @default(now())
+  importName     String
+  mails          String
+  author         User       @relation(fields: [authorId], references: [id])
+  authorId       Int
+  importedNumber Int
+  uniqueNumber   Int
+  campaigns      Campaign[] @relation("RecipientsFileToCampaign")
+}
+
+model Campaign {
+  id              Int              @id @default(autoincrement())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  delay           Int
+  countRecipients Int
+  countSenders    Int
+  nameCampaign    String
+  subject         String
+  sendersName     String
+  html            String
+  text            String
+  imagesPath      String
+  status          String
+  sendersFile     SendersFile[]    @relation("SendersFileToCampaign")
+  recipientsFile  RecipientsFile[] @relation("RecipientsFileToCampaign")
+  author          User             @relation(fields: [authorId], references: [id])
+  authorId        Int
+}

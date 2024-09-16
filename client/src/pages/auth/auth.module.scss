@@ -1,0 +1,53 @@
+.form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  gap: 10px;
+
+  input {
+    border: 1px solid teal;
+    outline: 0;
+    border-radius: 3px;
+    padding: 3px;
+    max-width: 200px;
+    background-color: transparent;
+    color: white;
+  }
+}
+
+.input_password {
+  background: transparent;
+  border: 0 !important;
+}
+
+.input_password_container {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid teal;
+}
+
+.icon {
+  color: white;
+  padding-right: 3px;
+  cursor: pointer;
+}
+
+.button {
+  outline: 0;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 2px;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background: rgb(190, 190, 190);
+  }
+}

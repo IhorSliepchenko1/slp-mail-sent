@@ -1,0 +1,40 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0061bc;
+  padding: 5px;
+}
+
+.ul_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.a {
+  color: white;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    color: rgb(164, 164, 164);
+  }
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.button {
+  border: 1px solid white;
+  color: white;
+  padding: 3px 14px;
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #3a97ed;
+    color: black;
+  }
+}
