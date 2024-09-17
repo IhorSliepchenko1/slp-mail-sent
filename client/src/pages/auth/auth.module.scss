@@ -9,13 +9,13 @@
   gap: 10px;
 
   input {
-    border: 1px solid teal;
+    border: 1px solid #98a957;
     outline: 0;
     border-radius: 3px;
     padding: 3px;
     max-width: 200px;
     background-color: transparent;
-    color: white;
+    color: #444;
   }
 }
 
@@ -30,24 +30,27 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 3px;
-  border: 1px solid teal;
+  border: 1px solid #98a957;
 }
 
 .icon {
-  color: white;
+  color: #98a957;
   padding-right: 3px;
   cursor: pointer;
 }
 
 .button {
-  outline: 0;
-  border: 0;
-  border-radius: 3px;
+  background: #b4d044;
+  border: 1px solid #98a957;
+  color: #444;
+  text-shadow: 0px 1px 0 #fff;
+  padding: 4px 15px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  outline: none;
   cursor: pointer;
-  padding: 2px;
   transition: 0.2s ease-in-out;
 
   &:hover {
-    background: rgb(190, 190, 190);
+    background: #bfde42;
   }
 }

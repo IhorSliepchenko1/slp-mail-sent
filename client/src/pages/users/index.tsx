@@ -15,7 +15,7 @@ const Users = () => {
 
   const users = useMemo(() => {
     return state.users.users;
-  }, [state.users.users]);
+  }, [state]);
 
   return (
     <div>

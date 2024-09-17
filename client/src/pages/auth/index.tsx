@@ -3,9 +3,8 @@ import style from "./auth.module.scss";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hook";
+import { useAppDispatch } from "../../app/hook";
 import { fetchUser } from "../../features/login/loginSlice";
-import { ErrorMessage } from "../../components/error";
 import { useNavigate } from "react-router-dom";
 
 type User = {
@@ -20,7 +19,6 @@ const Auth = () => {
       password: "",
     },
   });
-  const state = useAppSelector((state) => state);
   const [type, setType] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -63,7 +61,6 @@ const Auth = () => {
       <button type="submit" className={style.button}>
         Войти
       </button>
-      <ErrorMessage error={state.auth.error} status={state.auth.status} />
     </form>
   );
 };

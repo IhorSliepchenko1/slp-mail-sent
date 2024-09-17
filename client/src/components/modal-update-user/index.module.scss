@@ -1,0 +1,81 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  background-color: #00000074;
+  min-height: 100vh;
+  min-width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.body {
+  width: 200px;
+  margin-top: 100px;
+
+  background-color: white;
+  max-height: 270px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 7px;
+  border: 1px solid #a6c9e2;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #a6c9e2;
+  padding-top: 10px;
+  margin-top: 20px;
+  button {
+    border: 1px solid #79b7e7;
+    background: #d0e5f5;
+    font-weight: bold;
+    color: #1d5987;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+}
+
+.close {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.closeBtn {
+  cursor: pointer;
+  font-size: 17px;
+}
+.form {
+  display: grid;
+  justify-content: center;
+  // align-items: center;
+  gap: 10px;
+  // padding: 10px;
+  input,
+  select {
+    border: 1px solid #bebdbe;
+    background: #fcfff5;
+    color: #475900;
+    outline: none;
+    box-shadow: inset 1px 1px 4px #d8dbd2;
+    padding: 4px;
+
+    &:focus {
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4), 0 0 4px 1px #a5c62b;
+    }
+  }
+}
+
+.labelContainer {
+  display: grid;
+}

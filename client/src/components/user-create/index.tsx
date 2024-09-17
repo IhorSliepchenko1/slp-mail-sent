@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { User } from "../../types/types";
 import { fetchRegister } from "../../features/register/registerSlice";
 import style from "./index.module.scss";
-import { ErrorMessage } from "../error";
+import { fetchUsers } from "../../features/users/usersSlice";
 
 const UserCreate = () => {
   const { register, handleSubmit, reset } = useForm<User>({
@@ -19,42 +19,52 @@ const UserCreate = () => {
   const onSubmit = async (data: User) => {
     try {
       await dispatch(fetchRegister(data));
+      await dispatch(fetchUsers({ jwt: state.auth.current?.token as string }));
       reset();
+
+      return data;
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-      <div className={style.labelContainer}>
-        <label>Логин:</label>
-        <input {...register("login", { required: true })} type="text" />
-      </div>
+    <section className={style.wrapper}>
+      <p className={style.p}>Форма регистрации новых пользователей</p>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+        <div className={style.labelContainer}>
+          <label htmlFor="login">Логин:</label>
+          <input
+            className={style.inputs}
+            {...register("login", { required: true })}
+            type="text"
+            id="login"
+          />
+        </div>
 
-      <div className={style.labelContainer}>
-        <label>Пароль:</label>
-        <input
-          className={style.input_password}
-          {...register("password", { minLength: 6 })}
-          type="text"
-        />
-      </div>
+        <div className={style.labelContainer}>
+          <label htmlFor="password">Пароль:</label>
+          <input
+            className={style.inputs}
+            {...register("password", { minLength: 6 })}
+            type="text"
+            id="password"
+          />
+        </div>
 
-      <div className={style.labelContainer}>
-        <label>Роль:</label>
-        <select {...register("role")}>
-          <option value="USER">USER</option>
-          <option value="ADMIN">ADMIN</option>
-        </select>
-      </div>
+        <div className={style.labelContainer}>
+          <label>Роль:</label>
+          <select className={style.inputs} {...register("role")}>
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+          </select>
+        </div>
 
-      <button type="submit" className={style.button}>
-        Добавить
-      </button>
-
-      <ErrorMessage error={state.auth.error} status={state.auth.status} />
-    </form>
+        <button type="submit" className={style.button}>
+          Добавить
+        </button>
+      </form>
+    </section>
   );
 };
 

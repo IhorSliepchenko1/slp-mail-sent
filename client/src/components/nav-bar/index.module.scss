@@ -1,4 +1,6 @@
 .nav {
+  // position: sticky;
+  // top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +19,15 @@
   &:hover {
     color: rgb(164, 164, 164);
   }
+}
+
+.slotNav {
+  display: flex;
+  gap: 10px;
+}
+
+.role {
+  color: white;
 }
 
 ul {

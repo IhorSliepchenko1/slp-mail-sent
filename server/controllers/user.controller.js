@@ -92,7 +92,7 @@ const UserController = {
     }
   },
   updateUser: async (req, res) => {
-    const { login, password } = req.body;
+    const { login, password, role } = req.body;
     const { id } = req.query;
     try {
       const userCheck = await prisma.user.findUnique({
@@ -117,6 +117,7 @@ const UserController = {
         data: {
           login: login || undefined,
           password: hashedPassword,
+          role: role || undefined,
         },
       });
 
@@ -130,7 +131,7 @@ const UserController = {
     try {
       const users = await prisma.user.findMany({
         orderBy: {
-          createdAt: "desc",
+          createdAt: "asc",
         },
       });
 
@@ -140,38 +141,20 @@ const UserController = {
       res.status(500).json({ error: `Internal Server Error` });
     }
   },
-  // getUserById: async (req, res) => {
-  //   const { id } = req.params;
 
-  //   try {
-  //     const user = await prisma.user.findUnique({
-  //       where: { id: Number(id) },
-  //     });
-
-  //     if (!user) {
-  //       return res.status(404).json({ error: `Пользователь не найден` });
-  //     }
-
-  //     res.json(user);
-  //   } catch (error) {
-  //     console.error(`Get Current Error`, error);
-
-  //     res.status(500).json({ error: `Internal Server Error` });
-  //   }
-  // },
   deleteUser: async (req, res) => {
-    const { userId } = req.body;
+    const { id } = req.query;
 
     try {
       const user = await prisma.user.findUnique({
-        where: { id: Number(userId) },
+        where: { id: Number(id) },
       });
 
       if (!user) {
         return res.status(404).json({ error: `Пользователь не найден!` });
       }
 
-      await prisma.user.delete({ where: { id: Number(userId) } });
+      await prisma.user.delete({ where: { id: Number(id) } });
 
       res.json({ message: `user ${user.login} deleted` });
     } catch (error) {
